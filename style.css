@@ -70,7 +70,7 @@ h2 {
 /* ---------- header ---------- */
 
 .header {
-  position: relative;      /* чтобы .nav.is-open позиционировалось от хедера */
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -95,7 +95,6 @@ h2 {
     text-shadow .35s ease;
 }
 
-/* Лаймовое подчёркивание, растёт из центра */
 .logo::after {
   content: "";
   position: absolute;
@@ -153,7 +152,6 @@ h2 {
 .icon-btn:hover { background: var(--lime); color: #151515; border-color: var(--lime); }
 .icon-btn svg { width: 24px; height: 24px; }
 
-/* Гамбургер скрыт на десктопе */
 .menu-toggle { display: none; }
 
 /* ---------- hero ---------- */
@@ -194,22 +192,28 @@ h2 {
   animation: fadeUp 1.1s .35s ease-out both;
 }
 
+/* === ORBIT: толстый белый овал со свечением === */
 .orbit {
   position: absolute;
   left: 0;
   top: 60px;
   width: min(1150px, 100%);
-  height: 500px;
-  border: 3px solid rgba(236, 236, 236, .9);
+  height: 540px;                                     /* было 500 — выше */
+  border: 4px solid rgba(245, 245, 245, .95);
   border-radius: 50% 48% 52% 50% / 56% 50% 50% 44%;
   transform: rotate(-6deg);
   animation: orbitPulse 12s ease-in-out infinite;
+  box-shadow:
+    0 0 24px rgba(255, 255, 255, .25),
+    inset 0 0 24px rgba(255, 255, 255, .06);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, .35));
 }
 
+/* === WINDOW: опущено внутрь орбиты === */
 .window {
   position: absolute;
   left: 3%;
-  top: 60px;
+  top: 110px;                                        /* было 60 — опущено внутрь овала */
   width: min(960px, 95%);
   height: 360px;
   background: linear-gradient(145deg, #3a3a3a 0%, #232323 45%, #1a1a1a 100%);
@@ -360,14 +364,11 @@ h2 {
   border-radius: 8px;
   transition: background .2s;
 }
-
-/* Ограничиваем размер иконки внутри кнопки */
 .dock-arrow svg {
   width: 16px;
   height: 16px;
   display: block;
 }
-
 .dock-cta {
   padding: 9px 14px;
   color: #222; background: #ebebeb;
@@ -395,7 +396,7 @@ h2 {
   gap: 30px;
   max-width: 1080px;
   margin-inline: auto;
-  perspective: 1400px;      /* 3D-перспектива для карточек */
+  perspective: 1400px;
 }
 
 .card {
@@ -446,7 +447,7 @@ a.card:hover {
   background: #fff;
   border-radius: 13px;
   overflow: hidden;
-  transform-style: preserve-3d;    /* 3D-контекст для картинки внутри */
+  transform-style: preserve-3d;
 }
 
 .card-shot img {
@@ -457,7 +458,6 @@ a.card:hover {
   object-fit: contain;
   display: block;
 
-  /* Параллакс — двигаем сам логотип, а не белый блок */
   transform: translate3d(
     var(--card-inner-x, 0px),
     var(--card-inner-y, 0px),
@@ -577,7 +577,28 @@ a.card:hover {
 
 /* ---------- cursor glow ---------- */
 
-
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 140px;
+  margin-left: -70px;
+  margin-top: -70px;
+  pointer-events: none;
+  z-index: 2147483647;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(208, 242, 74, .013) 0%,
+    rgba(208, 242, 74, .006) 40%,
+    transparent 70%
+  );
+  transform: translate3d(var(--gx, -999px), var(--gy, -999px), 0);
+  transition: opacity .3s ease;
+  opacity: 0;
+  will-change: transform;
+}
 
 .cursor-glow.is-active {
   opacity: 1;
@@ -607,11 +628,9 @@ a.card:hover {
 /* ---------- mobile ---------- */
 
 @media (max-width: 900px) {
-  /* Скрываем стрелку-контакт, показываем гамбургер */
   .header-contact { display: none; }
   .menu-toggle { display: grid; }
 
-  /* Выпадающее мобильное меню */
   .nav {
     position: absolute;
     top: calc(100% + 10px);
@@ -647,25 +666,27 @@ a.card:hover {
   }
 
   .stage {
-    height: 440px;
+    height: 460px;
     margin-left: 0;
     margin-top: 20px;
   }
   .orbit {
     left: 0;
-    height: 320px;
+    height: 380px;                                   /* было 320 — выше для овала */
+    top: 40px;
   }
   .window {
     left: 0;
+    top: 90px;                                       /* было без top — теперь внутри овала */
     width: 100%;
-    height: 270px;
+    height: 250px;                                   /* было 270 — чуть ниже, чтобы влезло */
   }
 
-  /* Обновлено: поднимаем текст, уменьшаем шрифт */
+  /* Текст в окне */
   .window-copy {
     left: 24px;
     right: 24px;
-    top: 78px;
+    top: 70px;
   }
   .window-copy p {
     font-size: 14px;
@@ -678,10 +699,10 @@ a.card:hover {
     margin-bottom: 12px;
   }
 
-  /* Обновлено: blob чуть меньше и правее */
+  /* Blob: меньше, правее, ниже */
   .blob {
     right: 10px;
-    top: 130px;
+    top: 120px;
     width: 160px;
     height: 100px;
   }
@@ -735,8 +756,6 @@ a.card:hover {
 @media (hover: none) {
   .cursor-glow { display: none; }
 }
-
-
 
 /* ============================================================
    CONTACT PAGE
@@ -861,7 +880,6 @@ a.card:hover {
   box-shadow: 0 0 0 3px rgba(208, 242, 74, .12);
 }
 
-/* Красивая стрелка у select */
 .field select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -924,7 +942,7 @@ a.card:hover {
 }
 .form-note a:hover { border-color: var(--gold); }
 
-/* -------- mobile -------- */
+/* -------- mobile (contact page) -------- */
 
 @media (max-width: 720px) {
   .contact-main { padding: 20px var(--pad) 100px; }
