@@ -12,6 +12,74 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=JetBrains+Mono&family=Literata:wght@400;600&family=Onest:wght@400;500;700;800&family=Rubik+Mono+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== Красная плашка снизу ===== */
+    .form-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 140%);
+      z-index: 1000;
+
+      max-width: min(560px, calc(100% - 32px));
+      padding: 14px 20px;
+
+      font-family: "Onest", system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #fff;
+
+      background: #b30000;
+      border: 1px solid #ff3b3b;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 0 3px rgba(179, 0, 0, .18);
+
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .35s cubic-bezier(.22, .61, .36, 1), opacity .25s ease;
+    }
+
+    .form-toast.is-visible {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .form-toast::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 10px;
+      vertical-align: middle;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, .9);
+    }
+
+    /* Поле с ошибкой */
+    .field.has-error input,
+    .field.has-error select,
+    .field.has-error textarea {
+      border-color: #ff3b3b !important;
+      background: rgba(60, 0, 0, .35) !important;
+      box-shadow: 0 0 0 3px rgba(255, 59, 59, .15) !important;
+    }
+
+    /* На странице контактов всё видно сразу, без ожидания скролла */
+    .contact-page .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    @media (max-width: 720px) {
+      .form-toast {
+        bottom: 12px;
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
 
 <body class="contact-page">
@@ -43,12 +111,13 @@
 
       <form
         class="contact-form reveal reveal-delay-2"
+        id="contactForm"
         action="https://formspree.io/f/xwlvrqde"
         method="POST"
         novalidate
       >
         <div class="form-row">
-          <label class="field">
+          <label class="field" data-field="name">
             <span>Ваше имя</span>
             <input
               type="text"
@@ -59,7 +128,7 @@
             >
           </label>
 
-          <label class="field">
+          <label class="field" data-field="email">
             <span>Email</span>
             <input
               type="email"
@@ -72,7 +141,18 @@
         </div>
 
         <div class="form-row">
-          <label class="field">
+          <label class="field" data-field="phone">
+            <span>Телефон</span>
+            <input
+              type="tel"
+              name="phone"
+              required
+              autocomplete="tel"
+              placeholder="+7 (999) 123-45-67"
+            >
+          </label>
+
+          <label class="field" data-field="telegram">
             <span>Telegram <em>(необязательно)</em></span>
             <input
               type="text"
@@ -80,8 +160,10 @@
               placeholder="@username"
             >
           </label>
+        </div>
 
-          <label class="field">
+        <div class="form-row">
+          <label class="field" data-field="budget">
             <span>Бюджет</span>
             <select name="budget">
               <option value="">Не указан</option>
@@ -91,23 +173,23 @@
               <option>от 150 000 ₽</option>
             </select>
           </label>
+
+          <label class="field" data-field="type">
+            <span>Что нужно сделать</span>
+            <select name="type" required>
+              <option value="" disabled selected>Выберите…</option>
+              <option>Лендинг</option>
+              <option>Корпоративный сайт</option>
+              <option>Интернет-магазин</option>
+              <option>Дизайн + разработка</option>
+              <option>Только дизайн</option>
+              <option>Только разработка</option>
+              <option>Другое</option>
+            </select>
+          </label>
         </div>
 
-        <label class="field">
-          <span>Что нужно сделать</span>
-          <select name="type" required>
-            <option value="" disabled selected>Выберите…</option>
-            <option>Лендинг</option>
-            <option>Корпоративный сайт</option>
-            <option>Интернет-магазин</option>
-            <option>Дизайн + разработка</option>
-            <option>Только дизайн</option>
-            <option>Только разработка</option>
-            <option>Другое</option>
-          </select>
-        </label>
-
-        <label class="field">
+        <label class="field" data-field="message">
           <span>О проекте</span>
           <textarea
             name="message"
@@ -143,6 +225,132 @@
 
   <div class="cursor-glow" aria-hidden="true"></div>
 
-  <script src="script.js" defer></script>
+  <!-- Красная плашка снизу -->
+  <div class="form-toast" id="formToast" role="alert" aria-live="assertive"></div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('contactForm');
+      const toast = document.getElementById('formToast');
+
+      const fieldEls = {
+        name:    document.querySelector('[data-field="name"]'),
+        email:   document.querySelector('[data-field="email"]'),
+        phone:   document.querySelector('[data-field="phone"]'),
+        type:    document.querySelector('[data-field="type"]'),
+        message: document.querySelector('[data-field="message"]')
+      };
+
+      const inputs = {
+        name:    form.elements['name'],
+        email:   form.elements['email'],
+        phone:   form.elements['phone'],
+        type:    form.elements['type'],
+        message: form.elements['message']
+      };
+
+      let toastTimer = null;
+
+      function showToast(text) {
+        toast.textContent = text;
+        toast.classList.add('is-visible');
+
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('is-visible');
+        }, 4500);
+      }
+
+      function clearError(key) {
+        fieldEls[key].classList.remove('has-error');
+      }
+
+      function setError(key) {
+        fieldEls[key].classList.add('has-error');
+      }
+
+      // Снимаем подсветку при вводе / изменении
+      Object.keys(inputs).forEach((key) => {
+        inputs[key].addEventListener('input', () => clearError(key));
+        inputs[key].addEventListener('change', () => clearError(key));
+      });
+
+      // Валидаторы — возвращают текст ошибки или null
+      const validators = {
+        name(value) {
+          const v = value.trim();
+          if (!v) return 'Укажите имя.';
+          if (v.length < 2) return 'Имя слишком короткое — минимум 2 символа.';
+          if (!/^[A-Za-zА-Яа-яЁё\s\-]+$/.test(v)) {
+            return 'Имя может содержать только буквы, пробел и дефис.';
+          }
+          return null;
+        },
+
+        email(value) {
+          const v = value.trim();
+          if (!v) return 'Укажите email.';
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+            return 'Некорректный email. Пример: name@mail.com';
+          }
+          return null;
+        },
+
+        phone(value) {
+          const v = value.trim();
+          if (!v) return 'Укажите номер телефона.';
+          if (!/^[+\d\s\-()]+$/.test(v)) {
+            return 'Телефон может содержать только цифры, +, -, пробел и скобки.';
+          }
+          const digits = v.replace(/\D/g, '');
+          if (digits.length < 10 || digits.length > 15) {
+            return 'Некорректный номер телефона — от 10 до 15 цифр.';
+          }
+          return null;
+        },
+
+        type(value) {
+          if (!value) return 'Выберите, что нужно сделать.';
+          return null;
+        },
+
+        message(value) {
+          const v = value.trim();
+          if (!v) return 'Напишите пару слов о проекте.';
+          if (v.length < 10) return 'Расскажите чуть подробнее — минимум 10 символов.';
+          return null;
+        }
+      };
+
+      form.addEventListener('submit', function (event) {
+        let firstErrorKey = null;
+        let firstErrorText = null;
+
+        Object.keys(validators).forEach((key) => {
+          const error = validators[key](inputs[key].value);
+
+          if (error) {
+            setError(key);
+            if (!firstErrorKey) {
+              firstErrorKey = key;
+              firstErrorText = error;
+            }
+          } else {
+            clearError(key);
+          }
+        });
+
+        if (firstErrorKey) {
+          event.preventDefault();
+          showToast(firstErrorText);
+          inputs[firstErrorKey].focus();
+          return;
+        }
+
+        // Всё корректно — показываем «отправляем…» и даём форме уйти в Formspree
+        showToast('Отправляем заявку…');
+      });
+    })();
+  </script>
 </body>
 </html>
