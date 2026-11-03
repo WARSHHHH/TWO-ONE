@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <meta name="description" content="TWO/ONE — избранные работы. Сайты, интерфейсы и digital-проекты.">
+  <meta name="theme-color" content="#111111">
+
+  <title>TWO/ONE — Работы</title>
+
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=JetBrains+Mono&family=Literata:wght@400;600&family=Onest:wght@400;500;700;800&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <a class="logo" href="index.html">TWO/ONE</a>
+
+    <nav class="nav" id="main-nav" aria-label="Основная навигация">
+      <a href="works.html">Работы</a>
+      <a href="index.html#about">Кто мы</a>
+      <a href="index.html#process">Услуги</a>
+      <a href="contact.html">Контакты</a>
+    </nav>
+
+    <a class="icon-btn header-contact" href="contact.html" aria-label="Написать нам">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 19 19 5M8 5h11v11"/>
+      </svg>
+    </a>
+
+    <button
+      class="icon-btn menu-toggle"
+      type="button"
+      aria-label="Открыть меню"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="works" id="works">
+      <h2 class="reveal">
+        Наши работы<br>
+        скажут всё за нас
+      </h2>
+
+      <div class="grid">
+        <!-- Работа 1: Cherty Squad -->
+        <a
+          class="card reveal reveal-delay-1"
+          href="https://warshhhh.github.io/ChertySquad.github.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="card-shot">
+            <img src="img/cherty.svg" alt="Cherty Squad">
+          </div>
+
+          <h3>Cherty squad</h3>
+          <p>Сайт команды по Dota 2</p>
+        </a>
+
+        <!-- Работа 2: Gravesoil (фото заполняет всю карточку) -->
+        <a
+          class="card reveal reveal-delay-2"
+          href="https://warshhhh.github.io/gravesoil/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="card-shot card-shot--cover">
+            <img src="img/gravesoil.svg" alt="Portfolio Gravesoil">
+          </div>
+
+          <h3>Portfolio Gravesoil</h3>
+          <p>портфолио</p>
+        </a>
+
+        <div class="card card-empty reveal reveal-delay-3" aria-hidden="true"></div>
+        <div class="card card-empty reveal reveal-delay-4" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © TWO/ONE
+  </footer>
+
+  <div class="dock">
+    <a class="dock-arrow" href="contact.html" aria-label="Обсудить проект">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 19 19 5M8 5h11v11"/>
+      </svg>
+    </a>
+
+    <a class="dock-cta" href="contact.html">Обсудить проект</a>
+    <a class="dock-link" href="index.html#about">Кто мы</a>
+  </div>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+</body>
+</html>
