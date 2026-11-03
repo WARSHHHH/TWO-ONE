@@ -954,3 +954,22 @@ a.card:hover {
   .form-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
   .submit-btn { width: 100%; justify-content: center; }
 }
+
+/* ---------- works: картинка, заполняющая всю карточку ---------- */
+
+.card-shot.card-shot--cover {
+  padding: 0;
+  overflow: hidden;
+  display: block;        /* убираем grid, чтобы картинка не центрировалась как элемент */
+}
+
+.card-shot.card-shot--cover img {
+  width: 110% !important;
+  height: 150% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  object-position: center;
+  margin: -15%;
+  display: block;
+}
