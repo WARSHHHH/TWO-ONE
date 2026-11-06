@@ -973,3 +973,14 @@ a.card:hover {
   margin: -15%;
   display: block;
 }
+
+.card-shot.card-shot--cover2 img {
+  width: 110% !important;
+  height: 120% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover;
+  object-position: center;
+  margin: -15%;
+  display: block;
+}
