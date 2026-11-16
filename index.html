@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+
+  <title>TWO/ONE — Design × Development</title>
+  <meta name="description" content="TWO/ONE — независимый дуэт дизайнера и разработчика. Делаем сайты от идеи до запуска.">
+  <meta name="theme-color" content="#0c0d0e">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="TWO/ONE">
+  <meta property="og:title" content="TWO/ONE — Design × Development">
+  <meta property="og:description" content="TWO/ONE — независимый дуэт дизайнера и разработчика. Делаем сайты от идеи до запуска.">
+  <meta property="og:image" content="og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="team.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="header">
+    <a class="logo" href="#top" aria-label="TWO/ONE — на главную">
+      <svg class="logo-mark" viewBox="0 0 30 20" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="logo-clip"><circle cx="20" cy="10" r="9.25"/></clipPath>
+        </defs>
+        <circle cx="10" cy="10" r="9.25" fill="#b6f500" clip-path="url(#logo-clip)"/>
+        <circle cx="10" cy="10" r="9.25" fill="none" stroke="#f3f4f1" stroke-width="1.4"/>
+        <circle cx="20" cy="10" r="9.25" fill="none" stroke="#f3f4f1" stroke-width="1.4"/>
+      </svg>
+      <span>TWO<span class="logo-slash">/</span>ONE</span>
+    </a>
+
+    <nav class="nav" id="main-nav" aria-label="Основная навигация">
+      <a href="works.html">Работы</a>
+      <a href="#about">Кто мы</a>
+      <a href="#process">Услуги</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+
+    <a class="btn btn--primary btn--sm header-cta" href="contact.html">Обсудить проект <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
+
+    <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="hero-kicker">Design × Development</p>
+        <h1 id="hero-title">
+          Два взгляда.
+          <span>Один результат.</span>
+        </h1>
+
+        <p class="hero-lead">
+          Дизайнер и разработчик. Делаем сайты от идеи до запуска.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="contact.html">Обсудить проект <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
+          <a class="btn" href="works.html">Смотреть работы</a>
+        </div>
+
+        <ul class="hero-tags">
+          <li>Дизайн интерфейса</li>
+          <li>Frontend-разработка</li>
+          <li>От идеи до запуска</li>
+        </ul>
+      </div>
+
+      <div class="duo" role="img" aria-label="Два круга — дизайн и разработка — пересекаются в одной области: готовый сайт">
+        <div class="duo-glow"></div>
+        <svg viewBox="0 0 620 384" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id="duo-clip"><circle cx="428" cy="192" r="191"/></clipPath>
+            <linearGradient id="duo-lens-fill" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#dcff7a"/>
+              <stop offset="1" stop-color="#b6f500"/>
+            </linearGradient>
+            <radialGradient id="duo-a-fill" cx="0.35" cy="0.3" r="0.9">
+              <stop offset="0" stop-color="#b6f500" stop-opacity="0.22"/>
+              <stop offset="1" stop-color="#b6f500" stop-opacity="0.02"/>
+            </radialGradient>
+            <radialGradient id="duo-b-fill" cx="0.65" cy="0.3" r="0.9">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0.01"/>
+            </radialGradient>
+          </defs>
+          <circle class="duo-a" cx="192" cy="192" r="191" fill="url(#duo-a-fill)"/>
+          <circle class="duo-b" cx="428" cy="192" r="191" fill="url(#duo-b-fill)"/>
+          <circle class="duo-lens" cx="192" cy="192" r="191" fill="url(#duo-lens-fill)" clip-path="url(#duo-clip)"/>
+          <circle class="duo-ring duo-a" cx="192" cy="192" r="191"/>
+          <circle class="duo-ring duo-b" cx="428" cy="192" r="191"/>
+        </svg>
+        <span class="duo-label duo-label--a">Дизайн</span>
+        <span class="duo-label duo-label--ab">Сайт</span>
+        <span class="duo-label duo-label--b">Код</span>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="section-head reveal">
+        <h2 id="about-title">Команда проекта</h2>
+        <p class="section-lead">Дизайн, разработка и управление проектом — в одной команде.</p>
+      </div>
+
+      <!-- Карточки создаются скриптом team.js. Имена, ссылки и фото — в массиве teamMembers в начале этого файла. -->
+      <div class="team-grid" id="team-grid">
+        <noscript><p class="team-fallback">Включите JavaScript, чтобы увидеть команду проекта.</p></noscript>
+      </div>
+    </section>
+
+    <section class="process" id="process" aria-labelledby="process-title">
+      <div class="section-head reveal">
+        <h2 id="process-title">От идеи<br>до запуска.</h2>
+      </div>
+
+      <div class="steps">
+        <article class="step reveal reveal-delay-1">
+          <p class="step-index"><strong>01</strong> Design</p>
+          <h3>Дизайн сайта</h3>
+          <p>Исследование, структура, прототип и визуальная система интерфейса.</p>
+        </article>
+
+        <article class="step reveal reveal-delay-2">
+          <p class="step-index"><strong>02</strong> Development</p>
+          <h3>Разработка</h3>
+          <p>Адаптивная вёрстка, интерактивные элементы, оптимизация и публикация.</p>
+        </article>
+
+        <article class="step reveal reveal-delay-3">
+          <p class="step-index"><strong>03</strong> Full cycle</p>
+          <h3>Готовый сайт</h3>
+          <p>Цельный процесс: от обсуждения задачи до готового сайта в интернете.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta" id="contact" aria-labelledby="contact-title">
+      <div class="cta-card reveal">
+        <h2 id="contact-title">
+          Есть идея?
+          <span>Давай соберём.</span>
+        </h2>
+
+        <div class="cta-body">
+          <p>
+            Расскажите в двух словах, что хотите создать.
+            Мы ответим, зададим нужные вопросы и обсудим следующие шаги.
+          </p>
+
+          <div class="cta-actions">
+            <a class="btn btn--primary" href="contact.html">Обсудить проект <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
+            <a class="btn" href="t.me/andreewlqq" target="_blank" rel="noopener noreferrer">Telegram <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg><span class="visually-hidden">(откроется в новой вкладке)</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span data-year>2026</span> TWO/ONE</p>
+    <nav class="footer-nav" aria-label="Навигация в подвале">
+      <a href="works.html">Работы</a>
+      <a href="#about">Кто мы</a>
+      <a href="#process">Услуги</a>
+      <a href="contact.html">Контакты</a>
+    </nav>
+  </footer>
+
+  <div class="dock">
+    <a class="btn btn--primary btn--sm" href="contact.html">Обсудить проект <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg></a>
+    <a class="dock-link" href="#about">Кто мы</a>
+  </div>
+</body>
+</html>
